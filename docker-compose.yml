@@ -33,6 +33,8 @@ services:
     container_name: web-notes-service
     build:
       context: ./web-notes-service
+    volumes:
+      - ./data/db.sqlite:/app/db.sqlite
     ports:
       - 5000:5000
     restart: on-failure
