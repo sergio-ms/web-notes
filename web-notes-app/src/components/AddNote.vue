@@ -1,14 +1,23 @@
 <template>
   <div>
     <form @submit="addNote">
-      <input type="text" v-model="name" name="name" placeholder="Add note..." />
-      <input
-        type="text"
-        v-model="content"
-        name="content"
-        placeholder="Content..."
-      />
-      <input type="submit" value="sbumit" class="btn" />
+      <div class="field">
+        <input
+          type="text"
+          class="input is-primary"
+          v-model="name"
+          name="name"
+          placeholder="Name..."
+        />
+        <textarea
+          class="textarea is-primary"
+          type="text"
+          v-model="content"
+          name="content"
+          placeholder="Content..."
+        />
+        <input type="submit" value="Create" class="button is-primary" />
+      </div>
     </form>
   </div>
 </template>

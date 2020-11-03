@@ -1,8 +1,18 @@
 <template>
   <div class="note-item">
-    <h3>{{ note.name }}</h3>
-    <p>{{ note.content }}</p>
-    <button @click="this.$emit('del-note', note.id)" class="del">x</button>
+    <article class="message is-info">
+      <div class="message-header">
+        <p>{{ note.name }}</p>
+        <button
+          @click="this.$emit('del-note', note.id)"
+          class="delete"
+          aria-label="delete"
+        ></button>
+      </div>
+      <div class="message-body">
+        {{ note.content }}
+      </div>
+    </article>
   </div>
 </template>
 <script>
