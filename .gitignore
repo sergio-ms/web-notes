@@ -23,4 +23,5 @@ pnpm-debug.log*
 *.sw?
 
 web-notes-service/db.sqlite
-web-notes-service/db.sqlite
+web-notes-service/__pycache__
+.directory
