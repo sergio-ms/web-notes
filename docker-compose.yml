@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+
+  # Proxies requests to internal services
+  reverse-proxy:
+    image: nginx:1.17.10
+    container_name: reverse_proxy
+    depends_on:
+        - web-notes-app
+        - web-notes-service
+    volumes:
+      - ./reverse_proxy/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+
+  # generates weather reports
+  web-notes-app:
+    image: web-notes-app
+    container_name: web-notes-app
+    build:
+      context: ./web-notes-app
+    depends_on:
+        - web-notes-service        
+    ports:
+      - 8080:80
+    restart: on-failure
+
+
+  # Retrieves the temperature
+  web-notes-service:
+    image: web-notes-service
+    container_name: web-notes-service
+    build:
+      context: ./web-notes-service
+    ports:
+      - 5000:5000
+    restart: on-failure
