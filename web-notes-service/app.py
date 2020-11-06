@@ -42,10 +42,7 @@ notes_schema = NoteSchema(many=True)
 def add_note():
     name = request.json['name']
     content = request.json['content']
-
-    print(content)
     new_note = Note(name, content)
-
     db.session.add(new_note)
     db.session.commit()
 
@@ -59,13 +56,13 @@ def get_notes():
     return jsonify(result)
 
 
-@app.route('/api/v1/note/<id>', methods=['GET'])
+@app.route('/api/v1/notes/<id>', methods=['GET'])
 def get_note(id):
     note = Note.query.get(id)
     return note_schema.jsonify(note)
 
 
-@app.route('/api/v1/note/<id>', methods=['PUT'])
+@app.route('/api/v1/notes/<id>', methods=['PUT'])
 def update_note(id):
     note = Note.query.get(id)
     name = request.json['name']
@@ -78,7 +75,7 @@ def update_note(id):
     return note_schema.jsonify(note)
 
 
-@app.route('/api/v1/note/<id>', methods=['DELETE'])
+@app.route('/api/v1/notes/<id>', methods=['DELETE'])
 def delete_note(id):
     print(id)
     note = Note.query.get(id)

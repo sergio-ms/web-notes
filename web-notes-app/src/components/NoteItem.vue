@@ -4,7 +4,7 @@
       <div class="message-header">
         <p>{{ note.name }}</p>
         <button
-          @click="this.$emit('del-note', note.id)"
+          @click="deleteNote(note.id)"
           class="delete"
           aria-label="delete"
         ></button>
@@ -16,9 +16,13 @@
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "NoteItem",
-  props: ["note"]
+  props: ["note"],
+  methods: {
+    ...mapActions(["deleteNote"])
+  }
 };
 </script>
 <style scoped></style>
