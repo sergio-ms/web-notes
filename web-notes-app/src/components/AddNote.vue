@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit="addNote">
+    <form @submit="onSubmit">
       <div class="field">
         <input
           type="text"
@@ -22,7 +22,7 @@
   </div>
 </template>
 <script>
-import uuid from "uuid";
+import { mapActions } from "vuex";
 export default {
   name: "AddNote",
   data() {
@@ -32,16 +32,15 @@ export default {
     };
   },
   methods: {
-    addNote(e) {
+    ...mapActions(["addNote"]),
+    onSubmit(e) {
       e.preventDefault();
-      const newNote = {
-        id: uuid.v4(),
+      const note = {
         name: this.name,
         content: this.content
       };
 
-      this.$emit("add-note", newNote);
-      (this.name = ""), (this.content = "");
+      this.addNote(note);
     }
   }
 };
